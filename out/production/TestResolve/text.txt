@@ -1,0 +1,41 @@
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        String n = scan.nextLine();
+        long[] road = new long[n.length()];
+        int crosswalk = 0;
+        boolean left = true, right = false;
+
+        for (int i = 0; i < n.length(); i++) {
+            road[i] = n.charAt(i) - '0';
+        }
+
+        for (long i : road) {
+            if (left && (i == 1)) {
+                crosswalk++;
+                left = false;
+                right = true;
+            }
+            if (right && (i == 2)) {
+                crosswalk++;
+                left = true;
+                right = false;
+            }
+            if (i == 3) {
+                crosswalk++;
+            }
+        }
+
+        if (left) {
+            crosswalk++;
+        }
+
+        System.out.println(crosswalk);
+    }
+}
+
